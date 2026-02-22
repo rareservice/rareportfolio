@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rare Services | Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #030712;
+            color: #e2e8f0;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: rgba(34, 211, 238, 0.3);
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal-wrapper {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal-wrapper.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hide scrollbar for thumbnails */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-[100] bg-[#030712] flex flex-col items-center justify-center transition-all duration-800 ease-in-out">
+        <div class="relative flex flex-col items-center">
+            <!-- Glowing Background Effect -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/20 blur-[100px] rounded-full"></div>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter relative z-10 flex items-center gap-3">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">RARE</span>
+                <span class="font-light text-white tracking-widest">SERVICES</span>
+            </h1>
+
+            <div class="w-64 md:w-80 h-[2px] bg-slate-800 mt-8 rounded-full overflow-hidden relative z-10">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-cyan-400 to-blue-600 transition-all duration-75 ease-linear shadow-[0_0_10px_rgba(34,211,238,0.5)]" style="width: 0%"></div>
+            </div>
+            
+            <div id="progress-text" class="mt-2 text-xs font-mono text-cyan-500 relative z-10">0%</div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden initially) -->
+    <div id="main-content" class="hidden opacity-0">
+        
+        <!-- Navbar -->
+        <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-6">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold tracking-tighter text-white">
+                    R<span class="text-cyan-500">S.</span>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8 font-mono text-sm">
+                    <a href="#" class="text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">01. About</a>
+                    <a href="#services" class="text-slate-300 hover:text-cyan-400 transition-colors">02. Services</a>
+                    <a href="#work" class="text-slate-300 hover:text-cyan-400 transition-colors">03. Work</a>
+                    <a href="#contact" class="px-4 py-2 rounded-md border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 transition-all">Hire Me</a>
+                </div>
+                
+                <!-- Mobile Menu Icon -->
+                <button class="md:hidden text-slate-300">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cyan-900/20 blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/20 blur-[120px] pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+                <div class="max-w-3xl">
+                    <div class="reveal-wrapper" style="transition-delay: 100ms;">
+                        <p class="font-mono text-cyan-400 mb-4 tracking-wide">Hi, my name is</p>
+                    </div>
+                    
+                    <div class="reveal-wrapper" style="transition-delay: 200ms;">
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tight leading-tight mb-2">
+                            Rare.
+                        </h1>
+                    </div>
+                    
+                    <div class="reveal-wrapper" style="transition-delay: 300ms;">
+                        <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-400 tracking-tight leading-tight mb-8">
+                            I build the digital presence of brands.
+                        </h2>
+                    </div>
+                    
+                    <div class="reveal-wrapper" style="transition-delay: 400ms;">
+                        <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-2xl leading-relaxed">
+                            I’m a website developer, Discord bot developer, and social media advertiser focused on creating modern, results-driven online experiences.
+                        </p>
+                    </div>
+                    
+                    <div class="reveal-wrapper" style="transition-delay: 500ms;">
+                        <div class="flex flex-wrap items-center gap-6">
+                            <a href="#work" class="px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-full transition-all flex items-center gap-2 group">
+                                Check out my work
+                                <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Services Section -->
+        <section id="services" class="py-24 md:py-32 relative border-t border-white/5 bg-[#050b14]">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="reveal-wrapper">
+                    <div class="flex items-center gap-4 mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white flex items-center gap-2">
+                            <span class="font-mono text-cyan-400 text-2xl font-normal">02.</span> 
+                            What I Do
+                        </h2>
+                        <div class="h-[1px] bg-white/10 flex-grow max-w-xs"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="reveal-wrapper h-full" style="transition-delay: 0ms;">
+                        <div class="bg-white/[0.02] border border-white/5 p-8 rounded-2xl hover:bg-white/[0.04] transition-all hover:-translate-y-2 group h-full flex flex-col">
+                            <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="monitor" class="w-8 h-8 text-cyan-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Website Development</h3>
+                            <p class="text-slate-400 leading-relaxed flex-grow">
+                                Building modern, responsive, and performance-optimized websites tailored to elevate your brand's digital presence.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="reveal-wrapper h-full" style="transition-delay: 150ms;">
+                        <div class="bg-white/[0.02] border border-white/5 p-8 rounded-2xl hover:bg-white/[0.04] transition-all hover:-translate-y-2 group h-full flex flex-col">
+                            <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="terminal" class="w-8 h-8 text-cyan-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Discord Bot Development</h3>
+                            <p class="text-slate-400 leading-relaxed flex-grow">
+                                Creating advanced, custom Discord bots equipped with moderation, ticketing, automation systems, and complex API integrations.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="reveal-wrapper h-full" style="transition-delay: 300ms;">
+                        <div class="bg-white/[0.02] border border-white/5 p-8 rounded-2xl hover:bg-white/[0.04] transition-all hover:-translate-y-2 group h-full flex flex-col">
+                            <div class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="megaphone" class="w-8 h-8 text-cyan-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Social Media Advertising</h3>
+                            <p class="text-slate-400 leading-relaxed flex-grow">
+                                Running targeted, results-driven ad campaigns designed to maximize engagement, reach, and conversions for your business.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="py-24 md:py-32 relative">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="reveal-wrapper">
+                    <div class="flex items-center gap-4 mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white flex items-center gap-2">
+                            <span class="font-mono text-cyan-400 text-2xl font-normal">03.</span> 
+                            Some Things I've Built
+                        </h2>
+                        <div class="h-[1px] bg-white/10 flex-grow max-w-xs"></div>
+                    </div>
+                </div>
+
+                <div id="projects-container" class="space-y-24 md:space-y-32">
+                    <!-- Projects injected via JS to handle carousels cleanly -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 relative border-t border-white/5 bg-[#050b14] text-center">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="reveal-wrapper">
+                    <p class="font-mono text-cyan-400 mb-4">04. What's Next?</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Get In Touch</h2>
+                    <p class="text-slate-400 mb-10 leading-relaxed">
+                        Although I'm not currently looking for any new opportunities, my inbox is always open. 
+                        Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <!-- WhatsApp Button -->
+                        <a href="https://wa.me/923430821414" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 border-2 border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10 font-mono rounded-md transition-all group">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+
+                        <!-- Discord Button -->
+                        <a href="https://discordapp.com/users/1461376260612685876" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 border-2 border-[#5865F2] text-[#5865F2] hover:bg-[#5865F2]/10 font-mono rounded-md transition-all group">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 group-hover:scale-110 transition-transform">
+                                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                            </svg>
+                            Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 text-center font-mono text-sm text-slate-500 bg-[#030712]">
+            <p class="hover:text-cyan-400 transition-colors cursor-pointer">
+                Designed & Built by Rare Services
+            </p>
+        </footer>
+        
+    </div>
+
+    <!-- Fullscreen Image Modal -->
+    <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 backdrop-blur-sm flex-col items-center justify-center animate-fade-in">
+        <button id="modal-close" class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-[210] p-2 hover:bg-white/10 rounded-full">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+
+        <div class="relative w-full max-w-6xl h-[70vh] flex items-center justify-between px-4 md:px-12">
+            <button id="modal-prev" class="text-white/50 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full hidden md:block">
+                <i data-lucide="chevron-left" class="w-10 h-10"></i>
+            </button>
+            <div class="w-14 hidden md:block empty-spacer"></div>
+
+            <div class="flex-1 h-full flex items-center justify-center relative">
+                <img id="modal-image" src="" class="max-w-full max-h-full object-contain select-none shadow-2xl" alt="Fullscreen View">
+                <!-- Mobile swipe touch areas -->
+                <div id="modal-touch-prev" class="absolute inset-y-0 left-0 w-1/3 md:hidden"></div>
+                <div id="modal-touch-next" class="absolute inset-y-0 right-0 w-1/3 md:hidden"></div>
+            </div>
+
+            <button id="modal-next" class="text-white/50 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full hidden md:block">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+            <div class="w-14 hidden md:block empty-spacer"></div>
+        </div>
+
+        <!-- Thumbnails -->
+        <div id="modal-thumbnails" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 max-w-[90vw] overflow-x-auto p-4 bg-black/40 rounded-xl border border-white/10 shadow-2xl no-scrollbar">
+            <!-- Injected via JS -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Data Configuration
+        const projectsData = [
+            {
+                title: "Volt Dashboard",
+                category: "Discord Bot",
+                description: "A high-performance advanced modern ticket bot featuring live previews, real-time updates, and a smooth user experience.",
+                tech: ["Python", "Firebase", "Discord.py"],
+                images: [
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771756548/vs_ahu7fp.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771756548/vs4_hmqs02.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771756548/vs2_ke9y1f.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771756548/vs3_m0muht.webp"
+                ]
+            },
+            {
+                title: "2 Advance Basic Bot",
+                category: "Discord Bot",
+                description: "Advanced custom Discord management bot featuring multiple modular cogs, automation systems, moderation tools, ticketing, giveaways, autoresponders, crypto utilities, embeds, and server management features — fully developed and actively used with verified vouches.",
+                tech: ["Python", "Discord.py", "Firebase"],
+                images: [
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n5_fh7mfj.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n6_m0unxe.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n3_d8i8y1.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n1_kwut4k.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n2_obfjxq.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n4_awirbn.jpg",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771757543/n8_vsme4w.webp"
+                ]
+            },
+            {
+                title: "Modern Freelancing Website",
+                category: "Website Development",
+                description: "A professional online store designed for luxury watches. It features a clean, dark-mode design that makes products stand out, a simple shopping cart system, and an easy checkout process for customers.",
+                tech: ["React", "TailwindCSS", "Node.js", "Stripe"],
+                images: [
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771760806/1_zrlvqp.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771760806/2_mwkwar.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771760805/3_bfzgb5.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771760805/4_u1ux9i.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771760805/5_ycrdxr.webp",
+                    "https://res.cloudinary.com/dqr2ewypl/image/upload/v1771760565/6_iq6vxo.webp"
+                ]
+            }
+        ];
+
+        // Render Projects Data
+        const renderProjects = () => {
+            const container = document.getElementById('projects-container');
+            let html = '';
+
+            projectsData.forEach((project, index) => {
+                const isEven = index % 2 === 0;
+                
+                // Tech Stack HTML
+                const techHtml = project.tech.map(t => `<li>${t}</li>`).join('');
+                
+                // Carousel Images HTML
+                const imagesHtml = project.images.map((src, idx) => `
+                    <img 
+                        src="${src}" 
+                        alt="Slide ${idx}"
+                        class="carousel-img w-full h-full object-cover flex-shrink-0 transition-all duration-500 group-hover:scale-105"
+                        data-project="${index}"
+                        data-index="${idx}"
+                    />
+                `).join('');
+
+                // Carousel Dots HTML
+                const dotsHtml = project.images.length > 1 ? `
+                    <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+                        ${project.images.map((_, idx) => `
+                            <button 
+                                class="carousel-dot h-2 rounded-full transition-all duration-300 shadow-md ${idx === 0 ? 'bg-cyan-400 w-6 active-dot' : 'bg-white/50 hover:bg-white/80 w-2'}"
+                                data-project="${index}"
+                                data-index="${idx}"
+                            ></button>
+                        `).join('')}
+                    </div>
+                ` : '';
+
+                html += `
+                    <div class="reveal-wrapper">
+                        <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 ${!isEven ? 'md:flex-row-reverse' : ''}">
+                            
+                            <!-- Image Container -->
+                            <div class="w-full md:w-3/5 group relative rounded-2xl overflow-hidden aspect-video border border-white/10 cursor-pointer">
+                                <div class="carousel w-full h-full relative overflow-hidden group" data-project="${index}">
+                                    <div class="carousel-track flex w-full h-full transition-transform duration-700 ease-out" style="transform: translateX(0%)">
+                                        ${imagesHtml}
+                                    </div>
+                                    ${dotsHtml}
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="w-full md:w-2/5 flex flex-col ${!isEven ? 'md:items-start md:text-left' : 'md:items-end md:text-right'} z-20">
+                                <p class="font-mono text-cyan-400 mb-2">${project.category}</p>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white mb-6 hover:text-cyan-400 transition-colors cursor-pointer">
+                                    ${project.title}
+                                </h3>
+                                
+                                <div class="bg-[#112240] p-6 rounded-xl shadow-xl border border-white/5 mb-6 md:-ml-12 md:mr-0 relative z-30 text-slate-300 leading-relaxed text-left w-full">
+                                    ${project.description}
+                                </div>
+                                
+                                <ul class="flex flex-wrap gap-4 font-mono text-sm text-slate-400 mb-6 ${!isEven ? 'justify-start' : 'md:justify-end'}">
+                                    ${techHtml}
+                                </ul>
+                                
+                                <div class="flex items-center gap-4">
+                                    <a href="https://discordapp.com/users/1461376260612685876" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-cyan-400 transition-colors">
+                                        <i data-lucide="external-link" class="w-6 h-6"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        };
+
+        // Execution & Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Loading Screen Logic
+            const duration = 2500;
+            const intervalTime = 20;
+            const steps = duration / intervalTime;
+            let currentStep = 0;
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+
+            const timer = setInterval(() => {
+                currentStep++;
+                const progress = (currentStep / steps) * 100;
+                progressBar.style.width = `${progress}%`;
+                progressText.innerText = `${Math.round(progress)}%`;
+
+                if (currentStep >= steps) {
+                    clearInterval(timer);
+                    loadingScreen.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+                    
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        mainContent.classList.remove('hidden');
+                        // Trigger fade in
+                        setTimeout(() => {
+                            mainContent.classList.remove('opacity-0');
+                            mainContent.classList.add('animate-fade-in');
+                            initScrollReveal();
+                        }, 50);
+                    }, 800);
+                }
+            }, intervalTime);
+
+            // Render projects and initialize icons
+            renderProjects();
+            lucide.createIcons();
+
+            // 2. Navbar Scroll Logic
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-[#030712]/80', 'backdrop-blur-md', 'border-b', 'border-white/5', 'py-4');
+                    navbar.classList.remove('bg-transparent', 'py-6');
+                } else {
+                    navbar.classList.remove('bg-[#030712]/80', 'backdrop-blur-md', 'border-b', 'border-white/5', 'py-4');
+                    navbar.classList.add('bg-transparent', 'py-6');
+                }
+            });
+
+            // 3. Scroll Reveal Observer
+            const initScrollReveal = () => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+                document.querySelectorAll('.reveal-wrapper').forEach(el => observer.observe(el));
+            };
+
+            // 4. Carousel Logic
+            const carousels = document.querySelectorAll('.carousel');
+            const carouselTimers = {};
+
+            carousels.forEach((carousel, index) => {
+                const projectIdx = carousel.getAttribute('data-project');
+                const track = carousel.querySelector('.carousel-track');
+                const dots = carousel.querySelectorAll('.carousel-dot');
+                const numImages = projectsData[projectIdx].images.length;
+                let currentImgIndex = 0;
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                const updateCarousel = (idx) => {
+                    currentImgIndex = idx;
+                    track.style.transform = `translateX(-${currentImgIndex * 100}%)`;
+                    
+                    dots.forEach((dot, dotIdx) => {
+                        if (dotIdx === currentImgIndex) {
+                            dot.className = 'carousel-dot h-2 rounded-full transition-all duration-300 shadow-md bg-cyan-400 w-6 active-dot';
+                        } else {
+                            dot.className = 'carousel-dot h-2 rounded-full transition-all duration-300 shadow-md bg-white/50 hover:bg-white/80 w-2';
+                        }
+                    });
+                };
+
+                const nextSlide = () => {
+                    if (numImages <= 1) return;
+                    updateCarousel((currentImgIndex === numImages - 1) ? 0 : currentImgIndex + 1);
+                };
+                
+                const prevSlide = () => {
+                    if (numImages <= 1) return;
+                    updateCarousel((currentImgIndex === 0) ? numImages - 1 : currentImgIndex - 1);
+                };
+
+                if (numImages > 1) {
+                    carouselTimers[projectIdx] = setInterval(nextSlide, 5000);
+                }
+
+                // Handle Dots
+                dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        clearInterval(carouselTimers[projectIdx]);
+                        updateCarousel(parseInt(dot.getAttribute('data-index')));
+                        carouselTimers[projectIdx] = setInterval(nextSlide, 5000);
+                    });
+                });
+
+                // Handle Touch/Swipe
+                carousel.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, {passive: true});
+
+                carousel.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    clearInterval(carouselTimers[projectIdx]);
+                    
+                    if (touchStartX - touchEndX > 50) nextSlide();
+                    if (touchStartX - touchEndX < -50) prevSlide();
+                    
+                    carouselTimers[projectIdx] = setInterval(nextSlide, 5000);
+                }, {passive: true});
+
+                // Handle Image Clicks (Open Modal)
+                carousel.querySelectorAll('.carousel-img').forEach(img => {
+                    img.addEventListener('click', (e) => {
+                        const imgIndex = parseInt(img.getAttribute('data-index'));
+                        openModal(projectIdx, imgIndex);
+                    });
+                });
+            });
+
+            // 5. Modal Logic
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalThumbnails = document.getElementById('modal-thumbnails');
+            const btnClose = document.getElementById('modal-close');
+            const btnPrev = document.getElementById('modal-prev');
+            const btnNext = document.getElementById('modal-next');
+            const touchPrev = document.getElementById('modal-touch-prev');
+            const touchNext = document.getElementById('modal-touch-next');
+            
+            let currentModalProject = -1;
+            let currentModalIndex = 0;
+
+            const updateModal = () => {
+                const images = projectsData[currentModalProject].images;
+                modalImg.src = images[currentModalIndex];
+                
+                // Toggle buttons visibility based on array length
+                const showNav = images.length > 1;
+                btnPrev.style.display = showNav ? 'block' : 'none';
+                btnNext.style.display = showNav ? 'block' : 'none';
+                document.querySelectorAll('.empty-spacer').forEach(el => el.style.display = showNav ? 'none' : 'block');
+
+                // Update thumbnails
+                if (showNav) {
+                    modalThumbnails.innerHTML = images.map((src, idx) => `
+                        <button class="modal-thumb shrink-0 w-20 h-14 rounded-md overflow-hidden border-2 transition-all ${idx === currentModalIndex ? 'border-cyan-500 opacity-100 scale-110 shadow-[0_0_15px_rgba(34,211,238,0.4)]' : 'border-transparent opacity-40 hover:opacity-100 hover:scale-105'}" data-index="${idx}">
+                            <img src="${src}" class="w-full h-full object-cover pointer-events-none" />
+                        </button>
+                    `).join('');
+                    
+                    modalThumbnails.querySelectorAll('.modal-thumb').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            currentModalIndex = parseInt(btn.getAttribute('data-index'));
+                            updateModal();
+                        });
+                    });
+                } else {
+                    modalThumbnails.innerHTML = '';
+                }
+            };
+
+            const openModal = (projectIdx, imgIdx) => {
+                currentModalProject = parseInt(projectIdx);
+                currentModalIndex = parseInt(imgIdx);
+                updateModal();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            };
+
+            const modalNext = (e) => {
+                if(e) e.stopPropagation();
+                const images = projectsData[currentModalProject].images;
+                if (images.length <= 1) return;
+                currentModalIndex = (currentModalIndex === images.length - 1) ? 0 : currentModalIndex + 1;
+                updateModal();
+            };
+
+            const modalPrev = (e) => {
+                if(e) e.stopPropagation();
+                const images = projectsData[currentModalProject].images;
+                if (images.length <= 1) return;
+                currentModalIndex = (currentModalIndex === 0) ? images.length - 1 : currentModalIndex - 1;
+                updateModal();
+            };
+
+            btnClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', closeModal);
+            modalImg.addEventListener('click', (e) => e.stopPropagation());
+            modalThumbnails.addEventListener('click', (e) => e.stopPropagation());
+            
+            btnNext.addEventListener('click', modalNext);
+            btnPrev.addEventListener('click', modalPrev);
+            touchNext.addEventListener('click', modalNext);
+            touchPrev.addEventListener('click', modalPrev);
+        });
+    </script>
+</body>
+</html>
